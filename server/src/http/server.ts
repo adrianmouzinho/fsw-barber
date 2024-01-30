@@ -1,6 +1,11 @@
 import fastify from 'fastify'
+import { bookingsRoutes } from './routes/bookings'
+import { barbershopsRoutes } from './routes/barbershops'
 
 const app = fastify()
+
+app.register(bookingsRoutes)
+app.register(barbershopsRoutes)
 
 app
   .listen({
