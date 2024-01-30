@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "generate": "drizzle-kit generate:pg",
     "dev": "tsx watch ./src/http/server.ts"
   },
   "keywords": [],
@@ -19,8 +20,10 @@
   },
   "dependencies": {
     "@paralleldrive/cuid2": "^2.2.2",
+    "dotenv": "^16.4.1",
     "drizzle-orm": "^0.29.3",
     "fastify": "^4.26.0",
-    "postgres": "^3.4.3"
+    "postgres": "^3.4.3",
+    "zod": "^3.22.4"
   }
 }
