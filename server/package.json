@@ -1,10 +1,13 @@
 {
   "name": "server",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "generate": "drizzle-kit generate:pg",
+    "migrate": "tsx ./src/db/migrate.ts",
+    "seed": "tsx ./src/db/seed.ts",
     "dev": "tsx watch ./src/http/server.ts"
   },
   "keywords": [],
@@ -13,6 +16,7 @@
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.1.0",
     "@types/node": "^20.11.10",
+    "chalk": "^5.3.0",
     "drizzle-kit": "^0.20.13",
     "eslint": "^8.56.0",
     "tsx": "^4.7.0",
