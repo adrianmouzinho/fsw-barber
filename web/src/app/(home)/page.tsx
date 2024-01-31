@@ -1,9 +1,14 @@
+import { format } from 'date-fns'
+
+import { BookingCard } from '@/components/booking-card'
 import { Header } from '@/components/header'
 import { Search } from './components/search'
 import { BarbershopCard } from './components/barbershop-card'
-import { BookingCard } from '@/components/booking-card'
+import { ptBR } from 'date-fns/locale/pt-BR'
 
 export default function Home() {
+  const today = format(new Date(), "EEEE',' d 'de' y", { locale: ptBR })
+
   return (
     <div className="min-h-screen w-full flex flex-col">
       <Header />
@@ -15,7 +20,9 @@ export default function Home() {
               <span className="text-xl leading-tight">
                 Olá, <span className="font-bold">Miguel!</span>
               </span>
-              <span className="text-sm">Sexta, 2 de Fevereiro</span>
+              <span className="text-sm">
+                {today.replace(today[0], today[0].toUpperCase())}
+              </span>
             </div>
             <Search />
           </div>
