@@ -5,12 +5,12 @@ export function BookingCard() {
   return (
     <Card>
       <CardContent className="p-0">
-        <div className="grid grid-cols-[auto_106px] divide-x">
+        <div className="max-w-[350px] w-[calc(100vw-2.5rem)] grid grid-cols-[auto_106px] divide-x">
           <div className="p-3">
             <span className="block w-fit mb-3 py-0.5 px-2 text-xs font-bold text-primary bg-[#221C3D] rounded-full">
               Confirmado
             </span>
-            <h3 className="mb-2 font-bold">Corte de Cabelo</h3>
+            <h3 className="mb-2 font-bold truncate">Corte de Cabelo</h3>
             <div className="flex items-center gap-2">
               <Avatar className="h-6 w-6">
                 <AvatarImage
@@ -19,7 +19,7 @@ export function BookingCard() {
                 />
                 <AvatarFallback>AM</AvatarFallback>
               </Avatar>
-              <span className="text-sm">Vintage Barber</span>
+              <span className="text-sm truncate">Vintage Barber</span>
             </div>
           </div>
 
