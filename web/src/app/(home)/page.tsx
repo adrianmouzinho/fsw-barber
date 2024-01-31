@@ -1,21 +1,31 @@
 import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale/pt-BR'
 
 import { BookingCard } from '@/components/booking-card'
 import { Header } from '@/components/header'
 import { Search } from './components/search'
 import { BarbershopCard } from './components/barbershop-card'
-import { ptBR } from 'date-fns/locale/pt-BR'
+import { api } from '@/lib/api'
+import { Barbershop } from '@/@types/barbershop'
 
-export default function Home() {
+async function getBarbershops() {
+  const response = await api.get('/barbershops')
+
+  return response.data
+}
+
+export default async function Home() {
   const today = format(new Date(), "EEEE',' d 'de' y", { locale: ptBR })
+
+  const barbershops: Barbershop[] = await getBarbershops()
 
   return (
     <div className="min-h-screen w-full flex flex-col">
       <Header />
 
       <section>
-        <div className="max-w-[1224px] w-full mx-auto mt-6 px-5 flex flex-col gap-8">
-          <div className="space-y-6">
+        <div className="max-w-[1224px] w-full mx-auto mt-6 flex flex-col gap-8">
+          <div className="space-y-6 px-5">
             <div className="flex flex-col gap-1">
               <span className="text-xl leading-tight">
                 Olá, <span className="font-bold">Miguel!</span>
@@ -27,23 +37,24 @@ export default function Home() {
             <Search />
           </div>
 
-          <div className="space-y-5">
+          <div className="space-y-5 mb-12">
             <div>
-              <h2 className="text-xs font-bold uppercase text-zinc-400 mb-3">
+              <h2 className="text-xs font-bold uppercase text-zinc-400 mb-3 px-5">
                 AGENDAMENTOS
               </h2>
-              <div className="space-y-4">
-                <BookingCard />
+              <div className="flex gap-4 px-5 overflow-x-auto [&::-webkit-scrollbar]:hidden">
                 <BookingCard />
               </div>
             </div>
 
             <div>
-              <h2 className="text-xs font-bold uppercase text-zinc-400 mb-3">
+              <h2 className="text-xs font-bold uppercase text-zinc-400 mb-3 px-5">
                 RECOMENDADOS
               </h2>
-              <div className="flex flex-wrap gap-4">
-                <BarbershopCard />
+              <div className="flex gap-4 px-5 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+                {barbershops.map((barbershop) => (
+                  <BarbershopCard key={barbershop.id} barbershop={barbershop} />
+                ))}
               </div>
             </div>
           </div>
