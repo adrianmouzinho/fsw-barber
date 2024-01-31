@@ -1,4 +1,6 @@
 import { FastifyInstance } from 'fastify'
+import { z } from 'zod'
+
 import { db } from '../../db/connection'
 
 export async function barbershopsRoutes(app: FastifyInstance) {
@@ -6,5 +8,25 @@ export async function barbershopsRoutes(app: FastifyInstance) {
     const barbershops = await db.query.barbershops.findMany()
 
     return barbershops
+  })
+
+  app.get('/barbershops/:id', async (request) => {
+    const paramsSchema = z.object({
+      id: z.string().cuid2(),
+    })
+
+    const { id } = paramsSchema.parse(request.params)
+
+    const barbershop = await db.query.barbershops.findFirst({
+      where(fields, { eq }) {
+        return eq(fields.id, id)
+      },
+    })
+
+    if (!barbershop) {
+      throw new Error('Barbershop not found.')
+    }
+
+    return barbershop
   })
 }
