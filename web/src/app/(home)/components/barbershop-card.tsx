@@ -1,5 +1,8 @@
-import { StarIcon } from 'lucide-react'
+'use client'
+
+import { useRouter } from 'next/navigation'
 import Image from 'next/image'
+import { StarIcon } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
@@ -10,6 +13,8 @@ interface BarbershopCardProps {
 }
 
 export function BarbershopCard({ barbershop }: BarbershopCardProps) {
+  const router = useRouter()
+
   return (
     <Card className="rounded-2xl">
       <CardContent className="p-0">
@@ -29,7 +34,12 @@ export function BarbershopCard({ barbershop }: BarbershopCardProps) {
               <h3 className="font-bold truncate">{barbershop.name}</h3>
               <p className="text-xs text-zinc-400">{barbershop.address}</p>
             </div>
-            <Button variant="secondary">Reservar</Button>
+            <Button
+              variant="secondary"
+              onClick={() => router.push(`barbershop/${barbershop.id}`)}
+            >
+              Reservar
+            </Button>
           </div>
         </div>
       </CardContent>
