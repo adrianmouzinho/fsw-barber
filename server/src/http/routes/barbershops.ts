@@ -5,7 +5,12 @@ import { db } from '../../db/connection'
 
 export async function barbershopsRoutes(app: FastifyInstance) {
   app.get('/barbershops', async () => {
-    const barbershops = await db.query.barbershops.findMany()
+    const barbershops = await db.query.barbershops.findMany({
+      columns: {
+        createdAt: false,
+        updatedAt: false,
+      },
+    })
 
     return barbershops
   })
