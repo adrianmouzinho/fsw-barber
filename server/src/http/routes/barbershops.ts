@@ -21,6 +21,18 @@ export async function barbershopsRoutes(app: FastifyInstance) {
       where(fields, { eq }) {
         return eq(fields.id, id)
       },
+      columns: {
+        createdAt: false,
+        updatedAt: false,
+      },
+      with: {
+        services: {
+          columns: {
+            createdAt: false,
+            updatedAt: false,
+          },
+        },
+      },
     })
 
     if (!barbershop) {
