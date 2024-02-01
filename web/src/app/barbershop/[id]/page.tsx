@@ -32,7 +32,7 @@ export default async function BarbershopPage({ params }: BarbershopProps) {
   const barbershop: BarbershopWithServices = await getBarbershop(params.id)
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col flex-1">
       <div className="max-w-[1224px] w-full mx-auto flex flex-col">
         <section className="relative">
           <Header />

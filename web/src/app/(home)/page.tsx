@@ -20,7 +20,7 @@ export default async function Home() {
   const barbershops: Barbershop[] = await getBarbershops()
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col flex-1">
       <Header />
 
       <section>
