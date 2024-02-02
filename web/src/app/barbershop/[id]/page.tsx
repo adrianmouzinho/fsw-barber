@@ -1,5 +1,6 @@
 import { MapPinIcon, StarIcon } from 'lucide-react'
 import { redirect } from 'next/navigation'
+import { cookies } from 'next/headers'
 import Image from 'next/image'
 
 import { BarbershopWithServices } from '@/@types/barbershop-with-services'
@@ -29,6 +30,7 @@ export default async function BarbershopPage({ params }: BarbershopProps) {
     return redirect('/')
   }
 
+  const isAuthenticated = cookies().has('token')
   const barbershop: BarbershopWithServices = await getBarbershop(params.id)
 
   return (
@@ -69,7 +71,11 @@ export default async function BarbershopPage({ params }: BarbershopProps) {
           <div className="flex flex-col gap-3">
             {barbershop.services &&
               barbershop.services.map((service) => (
-                <ServiceCard key={service.id} service={service} />
+                <ServiceCard
+                  key={service.id}
+                  service={service}
+                  isAuthenticated={isAuthenticated}
+                />
               ))}
           </div>
         </section>

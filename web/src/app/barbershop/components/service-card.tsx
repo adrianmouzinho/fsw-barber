@@ -1,4 +1,7 @@
+'use client'
+
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 import { Service } from '@/@types/service'
 import { Card, CardContent } from '@/components/ui/card'
@@ -7,10 +10,23 @@ import { formatPrice } from '@/utils/format-price'
 
 interface ServiceCardProps {
   service: Service
+  isAuthenticated: boolean
 }
 
-export function ServiceCard({ service }: ServiceCardProps) {
+export function ServiceCard({ service, isAuthenticated }: ServiceCardProps) {
+  const router = useRouter()
+
   const price = formatPrice(service.priceInCents)
+
+  function handleBookService() {
+    if (!isAuthenticated) {
+      return router.push(
+        `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI}&scope=openid%20profile%20email`,
+      )
+    }
+
+    alert('concluir reserva')
+  }
 
   return (
     <Card>
@@ -32,7 +48,9 @@ export function ServiceCard({ service }: ServiceCardProps) {
 
             <div className="flex items-center justify-between">
               <span className="text-sm font-bold text-primary">{price}</span>
-              <Button variant="secondary">Reservar</Button>
+              <Button variant="secondary" onClick={handleBookService}>
+                Reservar
+              </Button>
             </div>
           </div>
         </div>
