@@ -9,6 +9,9 @@ export const users = pgTable('users', {
     .$defaultFn(() => createId())
     .primaryKey(),
   name: text('name').notNull(),
+  email: text('email').notNull(),
+  resourceName: text('resource_name').notNull(),
+  avatarUrl: text('avatar_url').notNull(),
   createdAt: timestamp('created_at').defaultNow(),
   updatedAt: timestamp('updated_at').defaultNow(),
 })
