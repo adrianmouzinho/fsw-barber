@@ -46,6 +46,7 @@ export default async function Home() {
               </h2>
               <div className="flex gap-4 px-5 overflow-x-auto [&::-webkit-scrollbar]:hidden">
                 <BookingCard />
+                <BookingCard />
               </div>
             </div>
 

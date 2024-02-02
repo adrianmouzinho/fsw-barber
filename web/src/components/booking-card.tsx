@@ -3,9 +3,9 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
 
 export function BookingCard() {
   return (
-    <Card>
+    <Card className="min-w-full sm:min-w-[350px] sm:max-w-[350px]">
       <CardContent className="p-0">
-        <div className="max-w-[350px] w-[calc(100vw-2.5rem)] grid grid-cols-[auto_106px] divide-x">
+        <div className="grid grid-cols-[auto_106px] divide-x">
           <div className="p-3">
             <span className="block w-fit mb-3 py-0.5 px-2 text-xs font-bold text-primary bg-[#221C3D] rounded-full">
               Confirmado
