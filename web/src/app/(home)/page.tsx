@@ -1,9 +1,11 @@
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
+import { cookies } from 'next/headers'
 
 import { BookingCard } from '@/components/booking-card'
 import { Header } from '@/components/header'
 import { Search } from './components/search'
+import { Welcome } from '@/components/welcome'
 import { BarbershopCard } from './components/barbershop-card'
 import { api } from '@/lib/api'
 import { Barbershop } from '@/@types/barbershop'
@@ -15,6 +17,8 @@ async function getBarbershops() {
 }
 
 export default async function Home() {
+  const isAuthenticated = cookies().has('token')
+
   const today = format(new Date(), "EEEE',' d 'de' y", { locale: ptBR })
 
   const barbershops: Barbershop[] = await getBarbershops()
@@ -27,9 +31,7 @@ export default async function Home() {
         <div className="max-w-[1224px] w-full mx-auto mt-6 flex flex-col gap-8">
           <div className="space-y-6 px-5">
             <div className="flex flex-col gap-1">
-              <span className="text-xl leading-tight">
-                Olá, <span className="font-bold">Miguel!</span>
-              </span>
+              <Welcome isAuthenticated={isAuthenticated} />
               <span className="text-sm">
                 {today.replace(today[0], today[0].toUpperCase())}
               </span>
