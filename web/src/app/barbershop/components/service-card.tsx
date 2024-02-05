@@ -7,6 +7,8 @@ import { Service } from '@/@types/service'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { formatPrice } from '@/utils/format-price'
+import { Sheet, SheetTrigger } from '@/components/ui/sheet'
+import { CreateBooking } from './create-booking'
 
 interface ServiceCardProps {
   service: Service
@@ -24,8 +26,6 @@ export function ServiceCard({ service, isAuthenticated }: ServiceCardProps) {
         `https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=${process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID}&redirect_uri=${process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI}&scope=openid%20profile%20email`,
       )
     }
-
-    alert('concluir reserva')
   }
 
   return (
@@ -48,9 +48,15 @@ export function ServiceCard({ service, isAuthenticated }: ServiceCardProps) {
 
             <div className="flex items-center justify-between">
               <span className="text-sm font-bold text-primary">{price}</span>
-              <Button variant="secondary" onClick={handleBookService}>
-                Reservar
-              </Button>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="secondary" onClick={handleBookService}>
+                    Reservar
+                  </Button>
+                </SheetTrigger>
+
+                <CreateBooking />
+              </Sheet>
             </div>
           </div>
         </div>
