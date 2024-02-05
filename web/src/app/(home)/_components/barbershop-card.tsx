@@ -36,7 +36,7 @@ export function BarbershopCard({ barbershop }: BarbershopCardProps) {
             </div>
             <Button
               variant="secondary"
-              onClick={() => router.push(`barbershop/${barbershop.id}`)}
+              onClick={() => router.push(`barbershops/${barbershop.id}`)}
             >
               Reservar
             </Button>
