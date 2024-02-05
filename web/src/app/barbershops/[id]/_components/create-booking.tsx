@@ -3,9 +3,12 @@ import { useState } from 'react'
 import { Calendar } from '@/components/ui/calendar'
 import { SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet'
 import { ptBR } from 'date-fns/locale/pt-BR'
+import { generateTimeOfDayList } from '../_utils/hours'
 
 export function CreateBooking() {
   const [date, setDate] = useState<Date | undefined>(new Date())
+
+  const times = generateTimeOfDayList(new Date())
 
   return (
     <SheetContent className="p-0">
@@ -46,7 +49,18 @@ export function CreateBooking() {
             }}
           />
         </div>
-        <div className="py-6 px-5">oi</div>
+        {date && (
+          <div className="py-6 px-5 flex items-center gap-3 overflow-x-auto [&::-webkit-scrollbar]:hidden">
+            {times.map((time) => (
+              <span
+                key={time}
+                className="py-2 px-4 text-xs border rounded-full"
+              >
+                {time}
+              </span>
+            ))}
+          </div>
+        )}
         <div className="py-6 px-5 flex-1">oi</div>
       </div>
     </SheetContent>
