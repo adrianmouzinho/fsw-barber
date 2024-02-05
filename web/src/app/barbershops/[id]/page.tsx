@@ -3,11 +3,11 @@ import { redirect } from 'next/navigation'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
 
+import { Button } from '@/components/ui/button'
 import { BarbershopWithServices } from '@/@types/barbershop-with-services'
 import { api } from '@/lib/api'
-import { Button } from '@/components/ui/button'
-import { ServiceCard } from '../components/service-card'
-import { Header } from '../components/header'
+import { ServiceCard } from './_components/service-card'
+import { Header } from './_components/header'
 
 interface BarbershopProps {
   params: {

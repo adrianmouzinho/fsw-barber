@@ -4,9 +4,9 @@ import { cookies } from 'next/headers'
 
 import { BookingCard } from '@/components/booking-card'
 import { Header } from '@/components/header'
-import { Search } from './components/search'
 import { Welcome } from '@/components/welcome'
-import { BarbershopCard } from './components/barbershop-card'
+import { BarbershopCard } from './_components/barbershop-card'
+import { Search } from './_components/search'
 import { api } from '@/lib/api'
 import { Barbershop } from '@/@types/barbershop'
 
